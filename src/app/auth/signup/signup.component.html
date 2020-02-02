@@ -3,25 +3,21 @@
         <div class="col-md-4">
             <img class="user-avatar" src="assets/images/logo.png" width="150px" />
             <h1>Appiness Registration</h1>
-            Existing user-  <a class="algn-left" [routerLink]="['/auth']">{{ 'Log in' | translate }}</a>
-            <form role="form">
+            Existing user-  <a class="" [routerLink]="['/auth']">{{ 'Log in' | translate }}</a>
+            <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit(registerForm.value)">
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="{{ 'Full Name' | translate }}">
+                        <input type="text" class="form-control input-underline input-lg" id="" formControlName="username" placeholder="{{ 'User Name' | translate }}">
+                        <span *ngIf="!registerForm.get('username').valid && registerForm.get('username').touched">Please enter your username</span>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="{{ 'Email' | translate }}">
+                        <input type="password" class="form-control input-underline input-lg" id="" formControlName="password" placeholder="{{ 'Password' | translate }}">
+                        <span *ngIf="!registerForm.get('password').valid && registerForm.get('password').touched">Please enter your password</span>
                     </div>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'Password' | translate }}">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'Repeat Password' | translate }}">
-                    </div>
+        
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']">{{ 'Submit' | translate }}</a>&nbsp;
+                <button class="btn rounded-btn" [disabled]="!registerForm.valid" >{{ 'Submit' | translate }}</button>&nbsp;
             </form>
            
 

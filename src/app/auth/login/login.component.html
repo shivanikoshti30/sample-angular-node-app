@@ -4,17 +4,19 @@
             <img src="assets/images/logo.png" width="150px" class="user-avatar" />
             <h1>Appiness Login</h1>
             Not a user- <a class="" [routerLink]="['/auth/signup']">{{ 'Signup' | translate }}</a>
-            <form role="form">
+            <form [formGroup]="loginForm">
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="{{ 'Email' | translate }}">
+                        <input type="text" ng-model="name" class="form-control input-underline input-lg" formControlName="username" id="" placeholder="{{ 'Email' | translate }}">
+                        <span *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">Please enter your username</span>
                     </div>
 
                     <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'Password' | translate }}">
+                        <input type="password" class="form-control input-underline input-lg" id="" formControlName="password" placeholder="{{ 'Password' | translate }}">
+                        <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">Please enter your password</span>
                     </div>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()">{{ 'Submit' | translate }}</a>
+                <button class="btn rounded-btn" [disabled]="!loginForm.valid" (click)="onLoggedin(loginForm.value)">{{ 'Submit' | translate }}</button>
                 &nbsp;
             </form>
            
