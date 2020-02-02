@@ -8,6 +8,10 @@ Git
 1. Angular version 8
 2. Node.js and npm Node ^10.16.0, npm ^6.9.0
 3. MongoDB - Keep a running daemon with mongod
+4. create connection userRole under the database, sample-mean-db and run following commands:
+5. command 1- db.getCollection('userRole').insert({role:'admin'})
+6. command 2- db.getCollection('userRole').insert({role:'guest'})
+7. check entries usiing command- db.getCollection('userRole').find({})
 
 # Developing
 1. Angular-
